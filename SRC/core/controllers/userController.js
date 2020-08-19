@@ -24,7 +24,6 @@ const UserController = {
             });
     },
     delete(req, res) {
-
         _userService.delete(req.body.id)
             .then(res.status(200).send())
             .catch(error => {
