@@ -38,6 +38,12 @@ module.exports = {
       city: {
         type: Sequelize.STRING
       },
+      job: {
+        type: Sequelize.STRING
+      },
+      hobbies: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
