@@ -4,6 +4,7 @@ const Validations = require('../utils/validations');
 const Utils = require('../utils/utils');
 const properties = require('../../config/properties');
 const _userRepository = require('../repositories/userRepository');
+const _emailService = require('../services/mailService');
 
 const UserService = {
     async register(email) {
@@ -20,11 +21,10 @@ const UserService = {
                 email: email,
                 password: await bcrypt.hash(password, properties.PASSWORDSALT)
             };
-
-            //enviar email
-            //emailCredentials(email,password);
-
             _userRepository.create(user);
+
+            _emailService.emailCredentials(email, password);
+
         } catch (error) {
             console.log(error);
         }
