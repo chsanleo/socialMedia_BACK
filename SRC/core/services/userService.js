@@ -45,6 +45,16 @@ const UserService = {
             console.log(error);
         }
     },
+    async delete(id) {
+        try {
+            this.existUser(id);
+            _userRepository.delete(id);
+
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
     //PRIVATE METHODS
     existUser(id) {
         Validations.validaId(id);
