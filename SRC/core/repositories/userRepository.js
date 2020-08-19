@@ -30,6 +30,13 @@ const UserRepository = {
         } catch (error) {
             console.log(error);
         }
+    },
+    async delete(id) {
+        try {
+            await User.User.delete(id);;
+        } catch (error) {
+            console.log(error);
+        }
     }
 };
 
