@@ -5,7 +5,7 @@ const app = express();
 const properties = require('./config/properties');
 
 //Router
-const mainRouter = require('./routes/main');
+const mainRouter = require('./routers/main');
 const userRouter = require('./routers/user');
 
 const cors = require('./middleware/cors');
