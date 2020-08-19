@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs');
 
+const Validations = require('../utils/validations');
 const Utils = require('../utils/utils');
 const properties = require('../../config/properties');
 const _userRepository = require('../repositories/userRepository');
@@ -27,6 +28,31 @@ const UserService = {
         } catch (error) {
             console.log(error);
         }
+    },
+    async update(id, user) {
+        try {
+            
+            Validations.validaUser(user);
+
+            let userDB = this.existUser(id);
+
+            user.password = userDB.password;
+            _userRepository.update(id,user);
+
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    //PRIVATE METHODS
+    existUser(id) {
+        Validations.validaId(id);
+
+        _userRepository.findById(id)
+            .then(user => {
+                if (!user) { throw Error(' User error. '); }
+                return user;
+            })
+            .catch(error => { throw error; });
     }
 };
 
