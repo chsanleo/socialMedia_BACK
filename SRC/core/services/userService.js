@@ -29,6 +29,16 @@ const UserService = {
             console.log(error);
         }
     },
+    async usersNear(id) {
+        try {
+            let userDB = this.existUser(id);
+
+            return _userRepository.searchByCity(userDB.city);
+
+        } catch (error) {
+            console.log(error);
+        }
+    },
     async update(id, user) {
         try {
 
