@@ -6,9 +6,11 @@ const Utils = {
     randomString(lenght){
         let result='';
         let universe = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyz!?()[]{}$&%-+';
-        let universeLenght = universe.lenght;
+        let universeArray = universe.split('');
+        let universeLength = universeArray.length;
+
         for(let i = 0; i<lenght; i++){
-            result += universe[Math.floor(Math.random()*universeLenght)];
+            result += universeArray[Math.floor((Math.random() * universeLength) + 1)];
         }
         return result;
     }
