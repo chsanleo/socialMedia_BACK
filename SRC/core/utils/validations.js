@@ -12,12 +12,28 @@ const Validations = {
     validaUser(user) {
         let error = EMPTY;
 
-        if (utils.isNullOrEmpty(username)) {
+        if (utils.isNullOrEmpty(user.username)) {
             error += ' An username is required. ';
         }
-        if (utils.isNullOrEmpty(name) || utils.isNullOrEmpty(surname)) {
+        if (utils.isNullOrEmpty(user.name) || utils.isNullOrEmpty(user.surname)) {
             error += ' Name and Surname must be filled. ';
         }
+        if (utils.isNullOrEmpty(user.birthdate)) {
+            error += ' Bith date must be filled. ';
+        }
+        if (utils.isNullOrEmpty(user.country)) {
+            error += ' Country must be filled. ';
+        }
+        if (utils.isNullOrEmpty(user.city)) {
+            error += ' City must be filled. ';
+        }
+        if (utils.isNullOrEmpty(user.hobbies)) {
+            error += ' Must be filled one or more hobbies. ';
+        }
+
+        if (!utils.isNullOrEmpty(error)) { throw Error(error); }
+    },
+    isValidEmail(email){
         if (!utils.isNullOrEmpty(email)) {
             const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             if(re.test(String(email).toLowerCase())){
@@ -26,19 +42,8 @@ const Validations = {
         } else {
             error += ' Email must be filled. ';
         }
-        if (utils.isNullOrEmpty(birthdate)) {
-            error += ' Bith date must be filled. ';
-        }
-        if (utils.isNullOrEmpty(country)) {
-            error += ' Country must be filled. ';
-        }
-        if (utils.isNullOrEmpty(city)) {
-            error += ' City must be filled. ';
-        }
-        if (utils.isNullOrEmpty(hobbies)) {
-            error += ' Must be filled one or more Hobbies. ';
-        }
-
         if (!utils.isNullOrEmpty(error)) { throw Error(error); }
     }
 };
+
+module.exports = Validations;
