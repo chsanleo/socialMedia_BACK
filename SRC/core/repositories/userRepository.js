@@ -19,7 +19,7 @@ const UserRepository = {
     },
     async findById(id) {
         try {
-            await User.findOne({ where: { id: id, deletedAt: null } });
+            return await User.findByPk(id);
         } catch (error) {
             console.log(error);
         }
