@@ -31,13 +31,15 @@ const UserService = {
     },
     async update(id, user) {
         try {
-            
+
             Validations.validaUser(user);
 
             let userDB = this.existUser(id);
 
             user.password = userDB.password;
-            _userRepository.update(id,user);
+            user.email = userDB.email;
+
+            _userRepository.update(id, user);
 
         } catch (error) {
             console.log(error);
@@ -47,12 +49,12 @@ const UserService = {
     existUser(id) {
         Validations.validaId(id);
 
-        _userRepository.findById(id)
-            .then(user => {
-                if (!user) { throw Error(' User error. '); }
-                return user;
-            })
+        let userDB = _userRepository.findById(id)
+            .then(user => { return user; })
             .catch(error => { throw error; });
+
+        if (userDB === undefined) { throw error('User error. '); }
+        return userDB;
     }
 };
 
