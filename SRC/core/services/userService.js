@@ -1,0 +1,33 @@
+const bcrypt = require('bcryptjs');
+
+const Utils = require('../utils/utils');
+const properties = require('../../config/properties');
+const _userRepository = require('../repositories/userRepository');
+
+const UserService = {
+    async register(email) {
+        try {
+            let userByMail = await _userRepository.searchByEmail(email);
+
+            if (!Utils.isNullOrEmpty(userByMail)) {
+                throw Error('The email: ' + email + ' is already used.');
+            }
+
+            let password = Utils.randomString(properties.MIN_LENGHT_PASSWORD);
+
+            let user = {
+                email: email,
+                password: await bcrypt.hash(password, properties.PASSWORDSALT)
+            };
+
+            //enviar email
+            //emailCredentials(email,password);
+
+            _userRepository.create(user);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+};
+
+module.exports = UserService;
