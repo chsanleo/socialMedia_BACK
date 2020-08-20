@@ -19,7 +19,6 @@ const UserRepository = {
     async update(id, type) {
         try {
            await Friend.update({type:type},{where:{id:id}});
-
         } catch (error) {
             console.log(error);
         }
