@@ -11,7 +11,8 @@ dbconnect();
 //Router
 const mainRouter = require('./routers/main');
 const userRouter = require('./routers/user');
-const friendRouter = require ('./routers/friend');
+const friendRouter = require('./routers/friend');
+const eventRouter = require('./routers/event');
 
 //Middleware
 const auth = require('./middleware/auth');
@@ -21,7 +22,7 @@ app.use(express.json());
 app.use(cors);
 
 app.use('/main', mainRouter);
-app.use('/user',auth, userRouter);
-app.use('/friend',auth, friendRouter);
+app.use('/user', auth, userRouter);
+app.use('/friend', auth, friendRouter);
 
 app.listen(properties.server_PORT, () => console.log('Server running on port ' + properties.server_PORT));
