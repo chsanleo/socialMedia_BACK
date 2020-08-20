@@ -24,7 +24,6 @@ const UserController = {
             });
     },
     delete(req, res) {
-
         _userService.delete(req.body.id)
             .then(res.status(200).send())
             .catch(error => {
@@ -32,9 +31,9 @@ const UserController = {
                 res.status(500).send({ message: 'There was an error. Contact with the administrator.' });
             });
     },
-    async usersNear(req, res) {
+    usersNear(req, res) {
         _userService.usersNear(req.body.id)
-            .then(userNear => res.status(200).send(userNear))
+            .then(userNear => { res.status(200).send(userNear);})
             .catch(error => {
                 console.log(error);
                 res.status(500).send({ message: 'There was an error. Contact with the administrator.' });

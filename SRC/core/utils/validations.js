@@ -43,6 +43,9 @@ const Validations = {
             error += ' Email must be filled. ';
         }
         if (!utils.isNullOrEmpty(error)) { throw Error(error); }
+    },
+    validaTypeFriendRelation(typeFriendR){
+        if(utils.isNullOrEmpty(typeFriendR)){ throw Error(" Incorrect type. ")}
     }
 };
 
