@@ -64,7 +64,6 @@ const UserService = {
         }
     },
 
-    //PRIVATE METHODS
     async existUser(id) {
         try{
         Validations.validaId(id);
