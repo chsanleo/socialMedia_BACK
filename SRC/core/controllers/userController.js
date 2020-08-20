@@ -1,7 +1,14 @@
 const _userService = require('../services/userService');
 
 const UserController = {
-
+    getUser(req, res){
+        _userService.existUser(req.body.id)
+        .then(userDB => { res.status(200).send(userDB);})
+        .catch(error => {
+            console.log(error);
+            res.status(500).send({ message: 'There was an error. Contact with the administrator.' });
+        });
+    },
     update(req, res) {
         const user = {
             username: req.body.username,
