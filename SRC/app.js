@@ -4,6 +4,10 @@ const app = express();
 //PropertiesFile
 const properties = require('./config/properties');
 
+//MongoConectionDB
+const dbconnect = require('./config/mongoDb');
+dbconnect();
+
 //Router
 const mainRouter = require('./routers/main');
 const userRouter = require('./routers/user');
