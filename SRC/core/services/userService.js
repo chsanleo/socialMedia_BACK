@@ -31,10 +31,9 @@ const UserService = {
     },
     async usersNear(id) {
         try {
-            let userDB = this.existUser(id);
-
+            let userDB = await this.existUser(id);
             return _userRepository.searchByCity(userDB.city);
-
+            
         } catch (error) {
             console.log(error);
         }
@@ -44,12 +43,12 @@ const UserService = {
 
             Validations.validaUser(user);
 
-            let userDB = this.existUser(id);
+            let userDB = await this.existUser(id);
 
             user.password = userDB.password;
             user.email = userDB.email;
 
-            _userRepository.update(id, user);
+            await _userRepository.update(id, user);
 
         } catch (error) {
             console.log(error);
@@ -58,7 +57,7 @@ const UserService = {
     async delete(id) {
         try {
             this.existUser(id);
-            _userRepository.delete(id);
+            await _userRepository.delete(id);
 
         } catch (error) {
             console.log(error);
@@ -66,15 +65,17 @@ const UserService = {
     },
 
     //PRIVATE METHODS
-    existUser(id) {
+    async existUser(id) {
+        try{
         Validations.validaId(id);
 
-        let userDB = _userRepository.findById(id)
-            .then(user => { return user; })
-            .catch(error => { throw error; });
+        let userDB = await _userRepository.findById(id);
 
-        if (userDB === undefined) { throw error('User error. '); }
+        if (userDB === undefined) { throw error(' User error. '); }
         return userDB;
+    } catch (error) {
+        console.log(error);
+    }
     }
 };
 
