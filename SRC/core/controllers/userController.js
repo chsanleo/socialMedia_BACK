@@ -23,7 +23,7 @@ const UserController = {
             password: '',
             email: ''
         };
-        _userService.update(req.body.id, user)
+        _userService.update(req.body.user.id, user)
             .then(res.status(200).send())
             .catch(error => {
                 console.log(error);
@@ -31,7 +31,7 @@ const UserController = {
             });
     },
     delete(req, res) {
-        _userService.delete(req.body.id)
+        _userService.delete(req.body.user.id)
             .then(res.status(200).send())
             .catch(error => {
                 console.log(error);
@@ -39,7 +39,7 @@ const UserController = {
             });
     },
     usersNear(req, res) {
-        _userService.usersNear(req.body.id)
+        _userService.usersNear(req.body.user.id)
             .then(userNear => { res.status(200).send(userNear);})
             .catch(error => {
                 console.log(error);
