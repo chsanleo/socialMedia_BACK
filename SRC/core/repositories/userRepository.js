@@ -18,16 +18,16 @@ const UserRepository = {
     },
     async searchByEmail(email) {
         try {
-            return await User.findOne({ where: { email: email }});
+            return await User.findOne({ where: { email: email } });
         } catch (error) {
             console.log(error);
             return null;
         }
     },
-    async searchByCity(city){
+    async searchByCity(city) {
         try {
-            return await User.findAll({where:{ city: city },distinct: true});
-            
+            return await User.findAll({ where: { city: city }, distinct: true });
+
         } catch (error) {
             console.log(error);
             return [];
@@ -36,6 +36,13 @@ const UserRepository = {
     async update(id, user) {
         try {
             await User.update(user, { where: { id: id } });
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    async updateToken(id, token) {
+        try {
+            await User.update({ token: token }, { where: { id: id } });
         } catch (error) {
             console.log(error);
         }

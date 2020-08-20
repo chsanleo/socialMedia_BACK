@@ -16,6 +16,14 @@ const MainController = {
                 });
         }
         res.status(201).send();
+    },
+    login(req, res) {
+        _userService.login(req.body.email, req.body.password)
+            .then(login => { res.status(200).send(login); })
+            .catch(error => {
+                console.log(error);
+                res.status(500).send(error);
+            });
     }
 };
 module.exports = MainController;
