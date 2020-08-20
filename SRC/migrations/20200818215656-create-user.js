@@ -26,6 +26,9 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
+      token: {
+        type: Sequelize.STRING
+      },
       pic_path: {
         type: Sequelize.STRING
       },
