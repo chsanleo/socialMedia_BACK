@@ -1,10 +1,12 @@
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const Validations = require('../utils/validations');
 const Utils = require('../utils/utils');
 const properties = require('../../config/properties');
 const _userRepository = require('../repositories/userRepository');
 const _emailService = require('../services/mailService');
+const conversion = require('../modelsReturn/conversion');
 
 const UserService = {
     async register(email) {
@@ -65,10 +67,10 @@ const UserService = {
     },
 
     async existUser(id) {
-        try{
-        Validations.validaId(id);
+        try {
+            Validations.validaId(id);
 
-        let userDB = await _userRepository.findById(id);
+            let userDB = await _userRepository.findById(id);
 
         if (userDB === undefined) { throw error(' User error. '); }
         return userDB;
