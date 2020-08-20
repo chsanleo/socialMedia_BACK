@@ -14,7 +14,7 @@ const transporter = nodemailer.createTransport({
 
 const MailService = {
     emailCredentials(emailTo, password) {
-        let message = '<p>email ' + emailTo + ' </p><br /><p>email ' + password + ' </p>';
+        let message = '<p>Email: ' + emailTo + ' </p><br /><p>Password: ' + password + ' </p>';
 
         const mailOptions = {
             from: 'noreply@socialMedia.com',
