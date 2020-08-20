@@ -31,11 +31,42 @@ const UserService = {
             console.log(error);
         }
     },
+    async login(email, password) {
+        try {
+            let user = await _userRepository.searchByEmail(email);
+            if (Utils.isNullOrEmpty(user)) {
+                throw Error(' Not registered. ');
+            }
+            if (!await bcrypt.compare(password, user.password)) {
+                throw new Error({ message: 'Wrong Credentials' });
+            }
+
+            let token = jwt.sign({ id: user.id }, properties.token_SECRETWORD, { expiresIn: properties.token_EXPIRES });
+
+            await _userRepository.updateToken(user.id, token);
+
+            let loginObj = {
+                user: conversion.userToUserReturn(user),
+                token: token
+            }
+
+            return loginObj;
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    async logOut(id) {
+        try {
+            await _userRepository.updateToken(id, null);
+        } catch (error) {
+            console.log(error);
+        }
+    },
     async usersNear(id) {
         try {
             let userDB = await this.existUser(id);
             return _userRepository.searchByCity(userDB.city);
-            
+
         } catch (error) {
             console.log(error);
         }
@@ -72,11 +103,11 @@ const UserService = {
 
             let userDB = await _userRepository.findById(id);
 
-        if (userDB === undefined) { throw error(' User error. '); }
-        return userDB;
-    } catch (error) {
-        console.log(error);
-    }
+            if (userDB === undefined) { throw error(' User error. '); }
+            return userDB;
+        } catch (error) {
+            console.log(error);
+        }
     }
 };
 
