@@ -23,7 +23,7 @@ const FriendController = {
             );
     },
     denyFriendRequest(req, res) {
-        _friendService.updateFriendRelation(req.body.id, 3)
+        _friendService.updateFriendRelation(req.body.user.id, 3)
             .then()
             .catch(
                 error => {
@@ -33,7 +33,7 @@ const FriendController = {
             );
     },
     acceptFriendRequest(req, res) {
-        _friendService.updateFriendRelation(req.body.id, 2)
+        _friendService.updateFriendRelation(req.body.user.id, 2)
             .then()
             .catch(
                 error => {
