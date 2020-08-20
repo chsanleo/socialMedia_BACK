@@ -2,12 +2,15 @@ const _userService = require('../services/userService');
 
 const UserController = {
     getUser(req, res){
-        _userService.existUser(req.body.id)
-        .then(userDB => { res.status(200).send(userDB);})
-        .catch(error => {
-            console.log(error);
-            res.status(500).send({ message: 'There was an error. Contact with the administrator.' });
-        });
+        return res.status(200).send(req.user);
+    },
+    logOut(req,res){
+        _userService.logOut(req.user.id)
+            .then(res.status(200).send())
+            .catch(error => {
+                console.log(error);
+                res.status(500).send(error);
+            });
     },
     update(req, res) {
         const user = {
