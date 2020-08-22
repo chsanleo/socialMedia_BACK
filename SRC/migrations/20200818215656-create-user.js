@@ -38,8 +38,8 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
-      country: {
-        type: Sequelize.STRING
+      CountryId: {
+        type: Sequelize.INTEGER
       },
       city: {
         type: Sequelize.STRING
