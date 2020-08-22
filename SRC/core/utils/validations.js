@@ -33,10 +33,10 @@ const Validations = {
 
         if (!utils.isNullOrEmpty(error)) { throw Error(error); }
     },
-    isValidEmail(email){
+    isValidEmail(email) {
         if (!utils.isNullOrEmpty(email)) {
             const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            if(re.test(String(email).toLowerCase())){
+            if (re.test(String(email).toLowerCase())) {
                 error += ' Email must have a correct format. ';
             }
         } else {
@@ -44,8 +44,26 @@ const Validations = {
         }
         if (!utils.isNullOrEmpty(error)) { throw Error(error); }
     },
-    validaTypeFriendRelation(typeFriendR){
-        if(utils.isNullOrEmpty(typeFriendR)){ throw Error(" Incorrect type. ")}
+    validaTypeFriendRelation(typeFriendR) {
+        if (utils.isNullOrEmpty(typeFriendR)) { throw Error(" Incorrect type. ") }
+    },
+    validaEvent(event) {
+        let error = EMPTY;
+
+        if (event.owner.length == 0) {
+            error += ' User must be provided. ';
+        }
+        if (utils.isNullOrEmpty(event.title)) {
+            error += ' A title must be provided. ';
+        }
+        if (utils.isNullOrEmpty(event.body)) {
+            error += ' A body must be provided. ';
+        }
+        if (utils.isNullOrEmpty(event.type)) {
+            error += ' A type must be provided. ';
+        }
+
+        if (!utils.isNullOrEmpty(error)) { throw Error(error); }
     }
 };
 
