@@ -1,6 +1,7 @@
 const Utils = require('../utils/utils');
 
 const _userService = require('../services/userService');
+const _countryService = require('../services/countryService');
 
 const MainController = {
     register(req, res) {
@@ -24,6 +25,14 @@ const MainController = {
                 console.log(error);
                 res.status(500).send(error);
             });
+    },
+    getAllCountries(req,res){
+        _countryService.getAll()
+        .then(countriesList => {res.status(200).send(countriesList);})
+        .catch(error => {
+            console.log(error);
+            res.status(500).send(error);
+        });
     }
 };
 module.exports = MainController;
