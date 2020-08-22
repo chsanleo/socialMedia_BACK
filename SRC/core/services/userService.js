@@ -6,7 +6,7 @@ const Utils = require('../utils/utils');
 const properties = require('../../config/properties');
 const _userRepository = require('../repositories/userRepository');
 const _emailService = require('../services/mailService');
-const conversion = require('../modelsReturn/conversion');
+const conversion = require('../modelsReturn/conversionToReturn');
 
 const UserService = {
     async register(email) {
