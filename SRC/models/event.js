@@ -14,6 +14,15 @@ const EventSchema = mongoose.Schema({
     pic_path: {
         type: String, required: true
     },
+    type: {
+        type: String, required: true
+    },
+    createdAt:{
+        type: Date, required: true
+    },
+    updatedAt:{
+        type: Date, required: false
+    },
     userLikes: {
         //[idUsers,idUsers,...]
         type: Array, required: false
