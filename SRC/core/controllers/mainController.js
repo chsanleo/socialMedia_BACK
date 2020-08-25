@@ -33,6 +33,14 @@ const MainController = {
             console.log(error);
             res.status(500).send(error);
         });
+    },
+    forgotPass(req,res){
+        _userService.recoveryPass(req.body.email)
+        .then()
+        .catch(error => {
+            console.log(error);
+            res.status(500).send(error);
+        });
     }
 };
 module.exports = MainController;
