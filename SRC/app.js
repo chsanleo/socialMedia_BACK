@@ -13,6 +13,7 @@ const mainRouter = require('./routers/main');
 const userRouter = require('./routers/user');
 const friendRouter = require('./routers/friend');
 const eventRouter = require('./routers/event');
+const messageRouter = require('./routers/message');
 
 //Middleware
 const auth = require('./middleware/auth');

@@ -50,17 +50,21 @@ const Validations = {
     validaEvent(event) {
         let error = EMPTY;
 
-        if (event.owner.length == 0) {
-            error += ' User must be provided. ';
-        }
-        if (utils.isNullOrEmpty(event.title)) {
-            error += ' A title must be provided. ';
-        }
-        if (utils.isNullOrEmpty(event.body)) {
-            error += ' A body must be provided. ';
-        }
-        if (utils.isNullOrEmpty(event.type)) {
-            error += ' A type must be provided. ';
+        if (event.owner.length == 0) { error += ' User must be provided. '; }
+        if (utils.isNullOrEmpty(event.title)) { error += ' A title must be provided. '; }
+        if (utils.isNullOrEmpty(event.body)) { error += ' A body must be provided. '; }
+        if (utils.isNullOrEmpty(event.type)) { error += ' A type must be provided. '; }
+
+        if (!utils.isNullOrEmpty(error)) { throw Error(error); }
+    },
+
+    validaMessage(message) {
+        let error = EMPTY;
+
+        if (message.owner.length == 0) { error += ' User must be provided. '; }
+        if (utils.isNullOrEmpty(body)) { error += ' A body must be provided. '; }
+        if (utils.isNullOrEmpty(message.parentEvent) || message.parentEvent < 1) {
+            error += ' A parentEvent must be provided. ';
         }
 
         if (!utils.isNullOrEmpty(error)) { throw Error(error); }
