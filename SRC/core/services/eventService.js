@@ -63,7 +63,7 @@ const EventService = {
     },
     async delete(_id) {
         try {
-            if (utils.isNullOrEmpty(id)) { return null; }
+            if (utils.isNullOrEmpty(_id)) { return null; }
             let event = await _eventRepository.findById(_id);
             event.delete = true;
             await _eventRepository.update(event);
