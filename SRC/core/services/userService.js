@@ -31,6 +31,21 @@ const UserService = {
             console.log(error);
         }
     },
+    async recoveryPass(email) {
+        try {
+            let userByMail = await _userRepository.searchByEmail(email);
+            let password = Utils.randomString(properties.MIN_LENGHT_PASSWORD);
+
+            userByMail.password = password;
+            _userRepository.update(userByMail.id, userByMail);
+
+            _emailService.emailCredentials(email, password);
+
+        } catch (error) {
+            console.log(error);
+        }
+    },
+
     async login(email, password) {
         try {
             let user = await _userRepository.searchByEmail(email);
