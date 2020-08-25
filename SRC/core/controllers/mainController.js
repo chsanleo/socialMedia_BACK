@@ -2,6 +2,7 @@ const Utils = require('../utils/utils');
 
 const _userService = require('../services/userService');
 const _countryService = require('../services/countryService');
+const _contactService = require('../services/contactService');
 
 const MainController = {
     register(req, res) {
@@ -36,6 +37,19 @@ const MainController = {
     },
     forgotPass(req,res){
         _userService.recoveryPass(req.body.email)
+        .then()
+        .catch(error => {
+            console.log(error);
+            res.status(500).send(error);
+        });
+    },
+    contactUs(req,res){
+        let contactUs = {
+            email: req.body.email,
+            subject: req.body.subject,
+            body: req.body.body
+        };
+        _contactService.create(contactUs)
         .then()
         .catch(error => {
             console.log(error);
