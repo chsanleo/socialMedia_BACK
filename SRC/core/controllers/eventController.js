@@ -62,7 +62,15 @@ const EventController = {
             });
     },
     likeEvent(req, res) {
-        _eventService.likeEvent(req.user, req._id)
+        _eventService.likeEvent(req.user, req.body._id)
+            .then(event => res.status(200).send(event))
+            .catch(error => {
+                console.log(error);
+                res.status(500).send(error);
+            });
+    },
+    unLikeEvent(req, res) {
+        _eventService.unLikeEvent(req.user, req.body._id)
             .then(event => res.status(200).send(event))
             .catch(error => {
                 console.log(error);
