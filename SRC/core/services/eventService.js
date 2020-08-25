@@ -21,7 +21,7 @@ const EventService = {
     },
     async getByType(type) {
         try {
-            if (utils.isNullOrEmpty(type)) { return null; }
+            if (utils.isNullOrEmpty(type)) { return []; }
             return await _eventRepository.findAllByType(type);
         } catch (error) {
             console.log(error);
