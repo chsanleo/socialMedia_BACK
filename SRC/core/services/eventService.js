@@ -1,11 +1,11 @@
 const _eventRepository = require('../repositories/eventRepository');
-const Validations = require('../utils/validations');
+const validations = require('../utils/validations');
 const utils = require('../utils/utils');
 
 const EventService = {
     async create(event) {
         try {
-            Validations.validaEvent(event);
+            validations.validaEvent(event);
             return await _eventRepository.create(event);
         } catch (error) {
             console.log(error);
@@ -41,9 +41,9 @@ const EventService = {
         try {
             if (utils.isNullOrEmpty(id) || user === null) { return null; }
             let event = await _eventRepository.findById(_id);
-           
-            event.userJoin = utils.pushUnic(event.userJoin,user);
-            
+
+            event.userJoin = utils.pushUnic(event.userJoin, user);
+
             return await _eventRepository.update(event);
         } catch (error) {
             console.log(error);
