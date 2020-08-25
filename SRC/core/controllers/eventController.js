@@ -4,10 +4,10 @@ const EventController = {
     create(req, res) {
         let event = {
             owner: req.user,
-            title: req.title,
-            body: req.body,
-            pic_path: req.pic_path,
-            type: req.type,
+            title: req.body.title,
+            body: req.body.body,
+            pic_path: req.body.pic_path,
+            type: req.body.type,
             userLikes: null,
             userJoin: null,
             createdAt: null,
@@ -22,7 +22,7 @@ const EventController = {
             });
     },
     get(req, res) {
-        _eventService.get(req.id)
+        _eventService.get(req.body.id)
             .then(event => res.status(200).send(event))
             .catch(error => {
                 console.log(error);
@@ -31,8 +31,8 @@ const EventController = {
     },
     //byType and orderbyDate
     getAll(req, res) {
-        _eventService.getByType(req.type)
-            .then(event => res.status(200).send(event))
+        _eventService.getByType(req.body.type)
+            .then(eventList => res.status(200).send(eventList))
             .catch(error => {
                 console.log(error);
                 res.status(500).send(error);
@@ -40,11 +40,11 @@ const EventController = {
     },
     update(req, res) {
         let event = {
-            _id: req._id,
-            title: req.title,
-            body: req.body,
-            pic_path: req.pic_path,
-            type: req.type,
+            _id: req.body._id,
+            title: req.body.title,
+            body: req.body.body,
+            pic_path: req.body.pic_path,
+            type: req.body.type,
         };
         _eventService.update(event)
             .then(event => res.status(200).send(event))
@@ -54,7 +54,7 @@ const EventController = {
             });
     },
     joinEvent(req, res) {
-        _eventService.joinEvent(req.user, req._id)
+        _eventService.joinEvent(req.user, req.body._id)
             .then(event => res.status(200).send(event))
             .catch(error => {
                 console.log(error);
@@ -70,7 +70,7 @@ const EventController = {
             });
     },
     delete(req, res) {
-        _eventService.delete(req._id)
+        _eventService.delete(req.body._id)
             .then()
             .catch(error => {
                 console.log(error);
