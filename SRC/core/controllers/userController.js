@@ -1,8 +1,9 @@
 const _userService = require('../services/userService');
+const conversionToReturn = require('../modelsReturn/conversionToReturn');
 
 const UserController = {
     getUser(req, res){
-        return res.status(200).send(req.user);
+        return res.status(200).send(conversionToReturn.userToUserReturn(req.user));
     },
     logOut(req,res){
         _userService.logOut(req.user.id)
