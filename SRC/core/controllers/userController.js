@@ -2,10 +2,18 @@ const _userService = require('../services/userService');
 const conversionToReturn = require('../modelsReturn/conversionToReturn');
 
 const UserController = {
-    getUser(req, res){
+    getUser(req, res) {
         return res.status(200).send(conversionToReturn.userToUserReturn(req.user));
     },
-    logOut(req,res){
+    getProfile(req, res) {
+        _userService.existUser(req.body.userId)
+            .then(res.status(200).send(conversionToReturn.userToUserReturn(res)))
+            .catch(error => {
+                console.log(error);
+                res.status(500).send(error);
+            });
+    },
+    logOut(req, res) {
         _userService.logOut(req.user.id)
             .then(res.status(200).send())
             .catch(error => {
@@ -44,7 +52,7 @@ const UserController = {
     },
     usersNear(req, res) {
         _userService.usersNear(req.body.user.id)
-            .then(userNear => { res.status(200).send(userNear);})
+            .then(userNear => { res.status(200).send(userNear); })
             .catch(error => {
                 console.log(error);
                 res.status(500).send({ message: 'There was an error. Contact with the administrator.' });
