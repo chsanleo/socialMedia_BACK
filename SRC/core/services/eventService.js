@@ -53,9 +53,21 @@ const EventService = {
         try {
             if (utils.isNullOrEmpty(id) || user === null) { return null; }
             let event = await _eventRepository.findById(_id);
-            
-            event.userLikes = utils.pushUnic(event.userLikes,user);
-            
+
+            event.userLikes = utils.pushUnic(event.userLikes, user);
+
+            return await _eventRepository.update(event);
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    async unLikeEvent(user, _id) {
+        try {
+            if (utils.isNullOrEmpty(id) || user === null) { return null; }
+            let event = await _eventRepository.findById(_id);
+            let posItem = event.userLikes.indexOf(user);
+            if (posItem > 0) { event.userLikes.splice(posItem, 1); }
+
             return await _eventRepository.update(event);
         } catch (error) {
             console.log(error);
