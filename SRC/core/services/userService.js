@@ -11,6 +11,8 @@ const conversion = require('../modelsReturn/conversionToReturn');
 const UserService = {
     async register(email) {
         try {
+            if (Utils.isNullOrEmpty(email)) { return; }
+
             let userByMail = await _userRepository.searchByEmail(email);
 
             if (!Utils.isNullOrEmpty(userByMail)) {
@@ -33,6 +35,8 @@ const UserService = {
     },
     async recoveryPass(email) {
         try {
+            if (Utils.isNullOrEmpty(email)) { return; }
+
             let userByMail = await _userRepository.searchByEmail(email);
             let password = Utils.randomString(properties.MIN_LENGHT_PASSWORD);
 
@@ -48,6 +52,8 @@ const UserService = {
 
     async login(email, password) {
         try {
+            if (Utils.isNullOrEmpty(email) || Utils.isNullOrEmpty(password)) { return null; }
+
             let user = await _userRepository.searchByEmail(email);
             if (Utils.isNullOrEmpty(user)) {
                 throw Error(' Not registered. ');
@@ -72,6 +78,7 @@ const UserService = {
     },
     async logOut(id) {
         try {
+            Validations.validaId(id);
             await _userRepository.updateToken(id, null);
         } catch (error) {
             console.log(error);
@@ -88,7 +95,6 @@ const UserService = {
     },
     async update(id, user) {
         try {
-
             Validations.validaUser(user);
 
             let userDB = await this.existUser(id);
@@ -104,6 +110,7 @@ const UserService = {
     },
     async delete(id) {
         try {
+
             this.existUser(id);
             await _userRepository.delete(id);
 
