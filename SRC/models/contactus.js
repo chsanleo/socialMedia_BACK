@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     subject: DataTypes.STRING,
     body: DataTypes.STRING
   }, {
+    paranoid: true,
     sequelize,
     modelName: 'contactUs',
   });
