@@ -68,6 +68,16 @@ const Validations = {
         }
 
         if (!utils.isNullOrEmpty(error)) { throw Error(error); }
+    },
+
+    validateContact(contact){
+        let error = EMPTY;
+
+        if (utils.isNullOrEmpty(contact.email)) { error += ' A email must be provided. '; }
+        if (utils.isNullOrEmpty(contact.subject)) { error += ' A subject must be provided. '; }
+        if (utils.isNullOrEmpty(contact.body)) { error += ' A body must be provided. '; }
+
+        if (!utils.isNullOrEmpty(error)) { throw Error(error); }
     }
 };
 
