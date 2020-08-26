@@ -74,6 +74,7 @@ const UserService = {
             return loginObj;
         } catch (error) {
             console.log(error);
+            throw Error(error);
         }
     },
     async logOut(id) {
