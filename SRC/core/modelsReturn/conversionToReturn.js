@@ -9,7 +9,7 @@ const ConversionObjects = {
             pic_path: user.pic_path,
             birthdate: user.birthdate,
             address: user.address,
-            country : user.country,
+            CountryId : user.CountryId,
             city: user.city,
             hobbies: user.hobbies,
             job: user.job
