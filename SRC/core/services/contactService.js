@@ -1,4 +1,4 @@
-const _contactRepository = require('../repositories/contactRespository');
+const _contactRepository = require('../repositories/contactRepository');
 const validations = require('../utils/validations');
 
 const ContactService = {
