@@ -9,9 +9,12 @@ const UserRepository = {
             console.log(error);
         }
     },
-    async getAll(idFriend){
+    async getAll(id){
+        let idFriend = parseInt(id);
         try {
-            return await Friend.findAll({where: { $or : [ {friend1:idFriend}, {friend2:idFriend}] }});
+            let friends = await Friend.findAll({where: {friend1:idFriend}});
+            friends.concat(await Friend.findAll({where: {friend2:idFriend}}));
+            return friends;
         } catch (error) {
             console.log(error);
         }
