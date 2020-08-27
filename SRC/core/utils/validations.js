@@ -17,10 +17,10 @@ const Validations = {
         }
         if (utils.isNullOrEmpty(user.name) || utils.isNullOrEmpty(user.surname)) {
             error += ' Name and Surname must be filled. ';
-        }
+        }/*
         if (utils.isNullOrEmpty(user.birthdate)) {
-            error += ' Bith date must be filled. ';
-        }
+            error += ' Birth date must be filled. ';
+        }*/
         if (utils.isNullOrEmpty(user.country)) {
             error += ' Country must be filled. ';
         }
