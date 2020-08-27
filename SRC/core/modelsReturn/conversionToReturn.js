@@ -2,6 +2,7 @@
 const ConversionObjects = {
     userToUserReturn (user){
         const userReturn = {
+            id : user.id,
             username: user.username,
             name: user.name,
             surname: user.surname,
