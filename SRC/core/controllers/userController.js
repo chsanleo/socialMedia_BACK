@@ -28,14 +28,15 @@ const UserController = {
             surname: req.body.surname,
             pic_path: req.body.pic_path,
             birthdate: req.body.birthdate,
-            address: req.body.adress,
+            address: req.body.address,
             country: req.body.country,
             city: req.body.city,
             hobbies: req.body.hobbies,
+            job: req.body.job,
             password: '',
             email: ''
         };
-        _userService.update(req.body.user.id, user)
+        _userService.update(req.body.id, user)//req.user.id
             .then(res.status(200).send())
             .catch(error => {
                 console.log(error);
