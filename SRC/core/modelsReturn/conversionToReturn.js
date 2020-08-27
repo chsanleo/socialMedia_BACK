@@ -7,8 +7,9 @@ const ConversionObjects = {
         let friends = 0;
         let pendingFriends = 0;
 
-        let friendsList = _friendService.getAllFriendRelations(user.id)
+        _friendService.getAllFriendRelations(user.id)
             .then(friendsList => {
+                if(friendsList !== null){return;}
                 for (let friend of friendsList) {
                     if (friend.type === 1 && friend.createdBy !== user.id) {
                         pendingFriends++;
@@ -20,7 +21,7 @@ const ConversionObjects = {
                     }
                 }
             })
-            .catch();
+            .catch(error=>{console.log('FriendCount '+error)});
 
         const userReturn = {
             id: user.id,
