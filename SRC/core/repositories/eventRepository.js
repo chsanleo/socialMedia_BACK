@@ -18,14 +18,14 @@ const EventRepository = {
     },
     async findAllByType(type) {
         try {
-            return await Event.find({ type: type, delete: false }).sort('-CreatedAt');
+            return await Event.find({ type: type, delete: false }).sort('-date');
         } catch (error) {
             console.log(error);
         }
     },
     async update(event) {
         try {
-            event.UpdateAt = Date.now();
+            event.UpdateAt = new Date();
             await Event.updateOne({ '_id': event._id }, { upsert: true });
         } catch (error) {
             console.log(error);
