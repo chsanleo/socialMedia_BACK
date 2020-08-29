@@ -3,8 +3,8 @@ const Event = require('../../models/event');
 const EventRepository = {
     async create(event) {
         try {
-            event.CreateAt = Date.now();
-            await Event.insert(event);
+            event.createAt = Date.now();
+            await Event.create(event);
         } catch (error) {
             console.log(error);
         }
@@ -18,14 +18,14 @@ const EventRepository = {
     },
     async findAllByType(type) {
         try {
-            return await Event.find({ type: type, delete: false }).sort('-CreatedAt');
+            return await Event.find({ type: type, delete: false }).sort('-date');
         } catch (error) {
             console.log(error);
         }
     },
     async update(event) {
         try {
-            event.UpdateAt = Date.now();
+            event.UpdateAt = new Date();
             await Event.updateOne({ '_id': event._id }, { upsert: true });
         } catch (error) {
             console.log(error);

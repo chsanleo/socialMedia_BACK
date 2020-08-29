@@ -31,8 +31,15 @@ const EventService = {
         try {
             Validations.validaEvent(event);
             let eventDB = await _eventRepository.findById(event._id);
-            //aplica cambios
-            return await _eventRepository.update(event);
+
+            eventDB.title = event.title;
+            eventDB.body = event.body;
+            eventDB.pic_path = event.pic_path;
+            eventDB.type = event.type;
+            eventDB.country = event.country;
+            eventDB.city = event.city;
+
+            return await _eventRepository.update(eventDB);
         } catch (error) {
             console.log(error);
         }
