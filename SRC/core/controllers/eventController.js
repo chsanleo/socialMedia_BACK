@@ -3,15 +3,18 @@ const _eventService = require('../services/eventService');
 const EventController = {
     create(req, res) {
         let event = {
-            owner: req.user,
+            owner: req.body.owner,//req.user
             title: req.body.title,
             body: req.body.body,
             pic_path: req.body.pic_path,
             type: req.body.type,
-            userLikes: null,
-            userJoin: null,
-            createdAt: null,
-            updatedAt: null,
+            country: req.body.country,
+            date: req.body.date,
+            city: req.body.city,
+            userLikes: [],
+            userJoin: [],
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
             delete: false
         };
         _eventService.create(event)
@@ -38,6 +41,7 @@ const EventController = {
                 res.status(500).send(error);
             });
     },
+
     update(req, res) {
         let event = {
             _id: req.body._id,
@@ -45,7 +49,10 @@ const EventController = {
             body: req.body.body,
             pic_path: req.body.pic_path,
             type: req.body.type,
+            country: req.body.country,
+            city: req.body.city
         };
+
         _eventService.update(event)
             .then(event => res.status(200).send(event))
             .catch(error => {
