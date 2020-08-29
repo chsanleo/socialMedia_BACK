@@ -19,14 +19,17 @@ const messageRouter = require('./routers/message');
 const auth = require('./middleware/auth');
 const cors = require('./middleware/cors');
 
-app.use(express.json());
+
+// Middlewares
 app.use(cors);
+app.use(express.json());
+
 
 app.use('/main', mainRouter);
-app.use('/user', auth, userRouter);
-app.use('/friend', auth, friendRouter);
-app.use('/event',auth,eventRouter);
-app.use('/msg',auth,messageRouter);
+app.use('/user'/*, auth*/, userRouter);
+app.use('/friend'/*, auth*/, friendRouter);
+app.use('/event'/*, auth*/, eventRouter);
+app.use('/msg'/*, auth*/, messageRouter);
 
 
 app.listen(properties.server_PORT, () => console.log('Server running on port ' + properties.server_PORT));
