@@ -17,6 +17,15 @@ const EventSchema = mongoose.Schema({
     type: {
         type: String, required: true
     },
+    date:{
+        type: Date, required: true
+    },
+    city:{
+        type: String, required: true
+    },
+    country:{
+        type: String, required: true
+    },
     createdAt:{
         type: Date, required: true
     },
