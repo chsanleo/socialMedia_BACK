@@ -23,7 +23,8 @@ const UserService = {
 
             let user = {
                 email: email,
-                password: await bcrypt.hash(password, properties.PASSWORDSALT)
+                password: await bcrypt.hash(password, properties.PASSWORDSALT),
+                pic_path: ''
             };
             _userRepository.create(user);
 
