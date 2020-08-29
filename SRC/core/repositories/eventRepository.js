@@ -3,8 +3,8 @@ const Event = require('../../models/event');
 const EventRepository = {
     async create(event) {
         try {
-            event.CreateAt = Date.now();
-            await Event.insert(event);
+            event.createAt = Date.now();
+            await Event.create(event);
         } catch (error) {
             console.log(error);
         }
