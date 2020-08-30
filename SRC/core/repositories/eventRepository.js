@@ -26,7 +26,7 @@ const EventRepository = {
     async update(event) {
         try {
             event.UpdateAt = new Date();
-            await Event.updateOne({ '_id': event._id }, { upsert: true });
+            return await Event.updateOne({ '_id': event._id }, event, { upsert: true });
         } catch (error) {
             console.log(error);
         }
