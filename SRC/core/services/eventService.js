@@ -39,38 +39,54 @@ const EventService = {
             eventDB.country = event.country;
             eventDB.city = event.city;
 
-            return await _eventRepository.update(eventDB);
+            await _eventRepository.update(eventDB);            
+            return await _eventRepository.findById(event._id);
+
         } catch (error) {
             console.log(error);
         }
     },
     async joinEvent(user, _id) {
         try {
-            if (utils.isNullOrEmpty(id) || user === null) { return null; }
+            if (utils.isNullOrEmpty(_id) || user === null) { return null; }
             let event = await _eventRepository.findById(_id);
+            if(event.userJoin === undefined || event.userJoin.length === 0 ){
+                let arr = new Array();
+                arr.push(user);
+                event.userJoin = arr;
+            }
+            else{
+                event.userJoin = utils.pushUnic(event.userJoin, user);
+           }
 
-            event.userJoin = utils.pushUnic(event.userJoin, user);
-
-            return await _eventRepository.update(event);
+            await _eventRepository.update(event);
+            return await _eventRepository.findById(_id);
         } catch (error) {
             console.log(error);
         }
     },
     async likeEvent(user, _id) {
         try {
-            if (utils.isNullOrEmpty(id) || user === null) { return null; }
+            if (utils.isNullOrEmpty(_id) || user === null) { return null; }
             let event = await _eventRepository.findById(_id);
-
-            event.userLikes = utils.pushUnic(event.userLikes, user);
-
-            return await _eventRepository.update(event);
+            if(event.userLikes === undefined || event.userLikes.length === 0 ){
+                let arr = new Array();
+                arr.push(user);
+                event.userLikes = arr;
+            }
+            else{
+                event.userLikes = utils.pushUnic(event.userLikes, user);
+           }
+            await _eventRepository.update(event);
+            let evento = await _eventRepository.findById(_id);
+            return evento;
         } catch (error) {
             console.log(error);
         }
     },
     async unLikeEvent(user, _id) {
         try {
-            if (utils.isNullOrEmpty(id) || user === null) { return null; }
+            if (utils.isNullOrEmpty(_id) || user === null) { return null; }
             let event = await _eventRepository.findById(_id);
             let posItem = event.userLikes.indexOf(user);
             if (posItem > 0) { event.userLikes.splice(posItem, 1); }
