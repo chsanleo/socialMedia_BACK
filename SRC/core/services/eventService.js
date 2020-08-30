@@ -59,8 +59,8 @@ const EventService = {
                 event.userJoin = utils.pushUnic(event.userJoin, user);
            }
 
-            await _eventRepository.update(event);
-            return await _eventRepository.findById(_id);
+           await _eventRepository.update(event);
+           return await _eventRepository.findById(_id);
         } catch (error) {
             console.log(error);
         }
@@ -78,8 +78,7 @@ const EventService = {
                 event.userLikes = utils.pushUnic(event.userLikes, user);
            }
             await _eventRepository.update(event);
-            let evento = await _eventRepository.findById(_id);
-            return evento;
+            return await _eventRepository.findById(_id);
         } catch (error) {
             console.log(error);
         }
