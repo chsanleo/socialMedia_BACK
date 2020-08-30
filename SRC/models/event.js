@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const EventSchema = mongoose.Schema({
     owner: {
-        //[username,userid]
+        //[user]
         type: Array, required: true
     },
     title: {
@@ -33,11 +33,11 @@ const EventSchema = mongoose.Schema({
         type: Date, required: false
     },
     userLikes: {
-        //[idUsers,idUsers,...]
+        //[Users,Users,...]
         type: Array, required: false
     },
     userJoin: {
-        //[idUsers,idUsers,...]
+        //[Users,Users,...]
         type: Array, required: false
     },
     delete: {
