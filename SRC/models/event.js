@@ -12,7 +12,7 @@ const EventSchema = mongoose.Schema({
         type: String, required: true
     },
     pic_path: {
-        type: String, required: true
+        type: String, required: false
     },
     type: {
         type: String, required: true
