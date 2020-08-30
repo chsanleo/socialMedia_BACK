@@ -11,7 +11,7 @@ const EventRepository = {
     },
     async findById(_id) {
         try {
-            return await Event.find({ _id: _id, delete: false });
+            return await Event.findOne({ _id: _id, delete: false });
         } catch (error) {
             console.log(error);
         }
