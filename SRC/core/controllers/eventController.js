@@ -1,9 +1,10 @@
 const _eventService = require('../services/eventService');
+const conversionToModel = require('../modelsReturn/conversionToModel');
 
 const EventController = {
     create(req, res) {
         let event = {
-            owner: req.body.owner,//req.user
+            owner: conversionToModel.userReturnToUser(req.body.owner),//req.user
             title: req.body.title,
             body: req.body.body,
             pic_path: req.body.pic_path,
@@ -61,7 +62,7 @@ const EventController = {
             });
     },
     joinEvent(req, res) {
-        _eventService.joinEvent(req.body.user, req.body._id)//(req.user, req.body._id)
+        _eventService.joinEvent(conversionToModel.userReturnToUser(req.body.user), req.body._id)//(req.user, req.body._id)
             .then(event => res.status(200).send(event))
             .catch(error => {
                 console.log(error);
@@ -69,7 +70,7 @@ const EventController = {
             });
     },
     likeEvent(req, res) {
-        _eventService.likeEvent(req.body.user, req.body._id)//(req.user, req.body._id)
+        _eventService.likeEvent(conversionToModel.userReturnToUser(req.body.user), req.body._id)//(req.user, req.body._id)
             .then(event => res.status(200).send(event))
             .catch(error => {
                 console.log(error);
@@ -77,7 +78,7 @@ const EventController = {
             });
     },
     unLikeEvent(req, res) {
-        _eventService.unLikeEvent(req.body.user, req.body._id)//(req.user, req.body._id)
+        _eventService.unLikeEvent(conversionToModel.userReturnToUser(req.body.user), req.body._id)//(req.user, req.body._id)
             .then(event => res.status(200).send(event))
             .catch(error => {
                 console.log(error);
