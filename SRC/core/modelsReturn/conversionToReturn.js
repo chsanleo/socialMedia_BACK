@@ -1,6 +1,6 @@
 const _friendService = require('../services/friendService');
 
-const ConversionObjects = {
+const ConversionReturnObjects = {
     userToUserReturn(user) {
         //0 delete, 1 pending, 2 accepted, 3 deny
 
@@ -43,4 +43,4 @@ const ConversionObjects = {
     }
 };
 
-module.exports = ConversionObjects;
+module.exports = ConversionReturnObjects;

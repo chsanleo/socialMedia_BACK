@@ -11,7 +11,7 @@ const MessageRepository = {
     },
     async findById(_id) {
         try {
-            return await Message.find({ _id: _id, delete: false });
+            return await Message.findOne({ _id: _id, delete: false });
         } catch (error) {
             console.log(error);
         }

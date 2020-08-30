@@ -18,7 +18,7 @@ const EventRepository = {
     },
     async findAllByType(type) {
         try {
-            return await Event.find({ type: type, delete: false }).sort('-date');
+            return await Event.find({ type: type, delete: false }).sort('+date');
         } catch (error) {
             console.log(error);
         }
