@@ -11,8 +11,8 @@ const EventController = {
             country: req.body.country,
             date: req.body.date,
             city: req.body.city,
-            userLikes: [],
-            userJoin: [],
+            userLikes: new Array(),
+            userJoin: new Array(),
             createdAt: Date.now(),
             updatedAt: Date.now(),
             delete: false
