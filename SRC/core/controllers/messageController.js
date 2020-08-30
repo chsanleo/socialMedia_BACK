@@ -1,9 +1,10 @@
 const _messageService = require('../services/messageService');
+const conversionToModel = require('../modelsReturn/conversionToModel');
 
 const MessageController = {
     create(req, res) {
         let message = {
-            owner: req.user,
+            owner: conversionToModel.userReturnToUser(req.body.owner),//req.user,
             parentEvent: req.body.parentEventId,
             parentMessage: req.body.parentMessageId,
             body: req.body.body,
@@ -51,7 +52,7 @@ const MessageController = {
             });
     },
     likeMessage(req, res) {
-        _messageService.likeEvent(req.user, req.body._id)
+        _messageService.likeMessage(conversionToModel.userReturnToUser(req.body.user), req.body._id)//(req.user, req.body._id)
             .then(event => res.status(200).send(event))
             .catch(error => {
                 console.log(error);
@@ -59,7 +60,7 @@ const MessageController = {
             });
     },
     unLikeMessage(req, res) {
-        _messageService.unLikeEvent(req.user, req.body._id)
+        _messageService.unLikeMessage(conversionToModel.userReturnToUser(req.body.user), req.body._id)//(req.user, req.body._id)
             .then(event => res.status(200).send(event))
             .catch(error => {
                 console.log(error);
