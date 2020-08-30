@@ -61,7 +61,7 @@ const EventController = {
             });
     },
     joinEvent(req, res) {
-        _eventService.joinEvent(req.user, req.body._id)
+        _eventService.joinEvent(req.body.user, req.body._id)//(req.user, req.body._id)
             .then(event => res.status(200).send(event))
             .catch(error => {
                 console.log(error);
@@ -69,7 +69,7 @@ const EventController = {
             });
     },
     likeEvent(req, res) {
-        _eventService.likeEvent(req.user, req.body._id)
+        _eventService.likeEvent(req.body.user, req.body._id)//(req.user, req.body._id)
             .then(event => res.status(200).send(event))
             .catch(error => {
                 console.log(error);
@@ -77,7 +77,7 @@ const EventController = {
             });
     },
     unLikeEvent(req, res) {
-        _eventService.unLikeEvent(req.user, req.body._id)
+        _eventService.unLikeEvent(req.body.user, req.body._id)//(req.user, req.body._id)
             .then(event => res.status(200).send(event))
             .catch(error => {
                 console.log(error);
