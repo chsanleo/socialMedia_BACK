@@ -87,10 +87,21 @@ const EventService = {
         try {
             if (utils.isNullOrEmpty(_id) || user === null) { return null; }
             let event = await _eventRepository.findById(_id);
-            let posItem = event.userLikes.indexOf(user);
-            if (posItem > 0) { event.userLikes.splice(posItem, 1); }
+            let posItem =-1;
+            let found = false;
 
-            return await _eventRepository.update(event);
+            for(let userLike of event.userLikes){  
+                posItem++;
+                if(userLike.id === user.id){
+                    found = true;
+                    break;
+                } 
+            }
+            console.log(posItem)
+            if (found) { event.userLikes.splice(posItem, 1);  console.log("eliminao")}
+
+             await _eventRepository.update(event);
+             return await _eventRepository.findById(_id);
         } catch (error) {
             console.log(error);
         }
