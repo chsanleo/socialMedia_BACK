@@ -39,7 +39,7 @@ const EventService = {
             eventDB.country = event.country;
             eventDB.city = event.city;
 
-            await _eventRepository.update(eventDB);            
+            await _eventRepository.update(eventDB);
             return await _eventRepository.findById(event._id);
 
         } catch (error) {
@@ -50,17 +50,17 @@ const EventService = {
         try {
             if (utils.isNullOrEmpty(_id) || user === null) { return null; }
             let event = await _eventRepository.findById(_id);
-            if(event.userJoin === undefined || event.userJoin.length === 0 ){
+            if (event.userJoin === undefined || event.userJoin.length === 0) {
                 let arr = new Array();
                 arr.push(user);
                 event.userJoin = arr;
             }
-            else{
+            else {
                 event.userJoin = utils.pushUnic(event.userJoin, user);
-           }
+            }
 
-           await _eventRepository.update(event);
-           return await _eventRepository.findById(_id);
+            await _eventRepository.update(event);
+            return await _eventRepository.findById(_id);
         } catch (error) {
             console.log(error);
         }
@@ -69,14 +69,14 @@ const EventService = {
         try {
             if (utils.isNullOrEmpty(_id) || user === null) { return null; }
             let event = await _eventRepository.findById(_id);
-            if(event.userLikes === undefined || event.userLikes.length === 0 ){
+            if (event.userLikes === undefined || event.userLikes.length === 0) {
                 let arr = new Array();
                 arr.push(user);
                 event.userLikes = arr;
             }
-            else{
+            else {
                 event.userLikes = utils.pushUnic(event.userLikes, user);
-           }
+            }
             await _eventRepository.update(event);
             return await _eventRepository.findById(_id);
         } catch (error) {
@@ -87,21 +87,21 @@ const EventService = {
         try {
             if (utils.isNullOrEmpty(_id) || user === null) { return null; }
             let event = await _eventRepository.findById(_id);
-            let posItem =-1;
+            let posItem = -1;
             let found = false;
 
-            for(let userLike of event.userLikes){  
+            for (let userLike of event.userLikes) {
                 posItem++;
-                if(userLike.id === user.id){
+                if (userLike.id === user.id) {
                     found = true;
                     break;
-                } 
+                }
             }
-            console.log(posItem)
-            if (found) { event.userLikes.splice(posItem, 1);  console.log("eliminao")}
 
-             await _eventRepository.update(event);
-             return await _eventRepository.findById(_id);
+            if (found) { event.userLikes.splice(posItem, 1); }
+
+            await _eventRepository.update(event);
+            return await _eventRepository.findById(_id);
         } catch (error) {
             console.log(error);
         }
