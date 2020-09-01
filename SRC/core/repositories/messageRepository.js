@@ -1,10 +1,10 @@
-const { Message } = require('../../models');
+const Message = require('../../models/message');
 
 const MessageRepository = {
     async create(message) {
         try {
             message.CreateAt = Date.now();
-            await Message.insert(message);
+            await Message.create(message);
         } catch (error) {
             console.log(error);
         }
