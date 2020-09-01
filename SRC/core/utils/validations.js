@@ -64,7 +64,7 @@ const Validations = {
         let error = EMPTY;
 
         if (message.owner === undefined || message.owner === null) { error += ' User must be provided. '; }
-        if (utils.isNullOrEmpty(body)) { error += ' A body must be provided. '; }
+        if (utils.isNullOrEmpty(message.body)) { error += ' A body must be provided. '; }
         if (utils.isNullOrEmpty(message.parentEvent) || message.parentEvent < 1) {
             error += ' A parentEvent must be provided. ';
         }
