@@ -50,6 +50,9 @@ module.exports = {
       hobbies: {
         type: Sequelize.STRING
       },
+      isadmin:{
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
