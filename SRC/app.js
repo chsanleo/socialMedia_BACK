@@ -21,14 +21,15 @@ const cors = require('./middleware/cors');
 
 
 // Middlewares
+
 app.use(cors);
 app.use(express.json());
-
+app.options("/*", (req, res)=> res.send());
 
 app.use('/main', mainRouter);
 app.use('/user'/*, auth*/, userRouter);
 app.use('/friend'/*, auth*/, friendRouter);
-app.use('/event'/*, auth*/, eventRouter);
+app.use('/event', auth, eventRouter);
 app.use('/msg'/*, auth*/, messageRouter);
 
 
