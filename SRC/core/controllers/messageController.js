@@ -5,15 +5,17 @@ const MessageController = {
     create(req, res) {
         let message = {
             owner: conversionToModel.userReturnToUser(req.body.owner),//req.user,
-            parentEvent: req.body.parentEventId,
-            parentMessage: req.body.parentMessageId,
+            parentEvent: req.body.parentEvent,
+            parentMessage: req.body.parentMessage,
             body: req.body.body,
-            type: req.type,
-            likes: null,
+            likes: new Array(),
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
             delete: false
         };
-        _messageService.create(message)
-            .then(message => res.status(201).send(message))
+        
+       _messageService.create(message)
+            .then(message =>  res.status(201).send(message))
             .catch(error => {
                 console.log(error);
                 res.status(500).send(error);
