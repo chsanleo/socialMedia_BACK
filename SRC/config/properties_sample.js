@@ -7,7 +7,12 @@ const PROPERTIES = {
     MIN_LENGHT_PASSWORD: 1,
     MONGO_USER: 'mongoUser',
     MONGO_PASS: 'mongoPass',
-    MONGO_NAMEDB: 'mongoDB'
+    MONGO_NAMEDB: 'mongoDB',
+    LOG_PATH: `path`,
+    LOG_MAXSIZE: 5,// 5MB
+    LOG_MAXFILES: 1,
+    LOG_LEVELFILE: 'info',//error, warn, info, verbose, debug, silly
+    LOG_LEVELCONSOLE: 'debug'//error, warn, info, verbose, debug, silly
 };
 
 module.exports = PROPERTIES
