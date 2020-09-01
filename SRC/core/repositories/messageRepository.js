@@ -26,7 +26,7 @@ const MessageRepository = {
     async update(message) {
         try {
             message.UpdateAt = Date.now();
-            await Message.updateOne({ '_id': message._id }, { upsert: true });
+            await Message.updateOne({ '_id': message._id }, message,{ upsert: true });
         } catch (error) {
             console.log(error);
         }
