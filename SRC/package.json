@@ -19,6 +19,8 @@
     "nodemailer": "6.4.11",
     "nodemailer-smtp-transport": "2.7.4",
     "sequelize": "6.3.4",
+    "swagger-jsdoc": "4.0.0",
+    "swagger-ui-express": "4.1.4",
     "winston": "3.3.3"
   }
 }
