@@ -18,7 +18,7 @@ const MessageRepository = {
     },
     async findAllByParentId(eventParentId) {
         try {
-            return await Message.find({ parentEvent: eventParentId, delete: false }).sort('-CreatedAt');
+            return await Message.find({ parentEvent: eventParentId, delete: false }).sort('+createdAt');
         } catch (error) {
             console.log(error);
         }
