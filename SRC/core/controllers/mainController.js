@@ -10,6 +10,10 @@ const MainController = {
         let email = req.body.email;
 
         if (!Utils.isNullOrEmpty(email)) {
+            _userService.searchByEmail(email)
+                .then()
+                .catch(error => { res.status(500).send(error); });
+
             _userService.register(email)
                 .then()
                 .catch(error => {
