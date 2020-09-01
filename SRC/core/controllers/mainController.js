@@ -40,18 +40,19 @@ const MainController = {
         .then()
         .catch(error => {
             console.log(error);
-            res.status(500).send(error);
-        });
+                res.status(500).send(error);
+            });
     },
-    contactUs(req,res){
+    contactUs(req, res) {
         let contactUs = {
             email: req.body.email,
             subject: req.body.subject,
-            body: req.body.body
+            body: req.body.message
         };
+
         _contactService.create(contactUs)
-        .then()
-        .catch(error => {
+            .then()
+            .catch(error => {
             console.log(error);
             res.status(500).send(error);
         });
