@@ -32,9 +32,16 @@ const MessageService = {
             if (utils.isNullOrEmpty(id) || user === null) { return null; }
             let message = await _messageRepository.findById(_id);
 
-            message.userLikes = utils.pushUnic(message.userLikes, user);
-
-            return await _messageRepository.update(message);
+            if (message.userLikes === undefined || message.userLikes.length === 0) {
+                let arr = new Array();
+                arr.push(user);
+                message.userLikes = arr;
+            }
+            else {
+                message.userLikes = utils.pushUnic(message.userLikes, user);
+            }
+             await _messageRepository.update(message);
+             return await _messageRepository.get(_id);
         } catch (error) {
             console.log(error);
         }
