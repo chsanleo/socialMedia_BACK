@@ -6,10 +6,10 @@ const MessageSchema = mongoose.Schema({
         type: Array, required: true
     },
     parentEvent: {
-        type: Number, required: true
+        type: String, required: true
     },
     parentMessage: {
-        type: Number, required: false
+        type: String, required: false
     },
     body: {
         type: String, required: true
