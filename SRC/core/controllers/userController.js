@@ -6,8 +6,9 @@ const UserController = {
         return res.status(200).send(conversionToReturn.userToUserReturn(req.user));
     },
     getProfile(req, res) {
-        _userService.existUser(req.body.userId)
-            .then(res.status(200).send(conversionToReturn.userToUserReturn(res)))
+        console.log(req.body)
+        _userService.existUser(req.body.id)
+            .then(profile =>{ res.status(200).send(conversionToReturn.userToUserReturn(profile))})
             .catch(error => {
                 console.log(error);
                 res.status(500).send(error);
