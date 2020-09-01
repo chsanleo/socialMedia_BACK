@@ -26,7 +26,7 @@ const EventController = {
             });
     },
     get(req, res) {
-        _eventService.get(req.body.id)
+        _eventService.get(req.body._id)
             .then(event => res.status(200).send(event))
             .catch(error => {
                 console.log(error);
