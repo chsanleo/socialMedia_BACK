@@ -34,6 +34,19 @@ const UserService = {
             console.log(error);
         }
     },
+    async searchByEmail(email) {
+        try {
+
+            let user = await _userRepository.searchByEmail(email);
+            if (user === null || user) {
+                throw Error('This email already exist. Did u forget ur password? ');
+            }
+        } catch (error) {
+            console.log(error);
+            throw Error(error);
+
+        }
+    },
     async recoveryPass(email) {
         try {
             if (Utils.isNullOrEmpty(email)) { return; }
@@ -83,7 +96,7 @@ const UserService = {
             Validations.validaId(id);
             await _userRepository.updateToken(id, null);
         } catch (error) {
-            console.log(error);
+            throw Error ('An error has occur, please try again later');
         }
     },
     async usersNear(id) {
