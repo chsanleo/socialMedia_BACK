@@ -37,17 +37,14 @@ const MessageController = {
                 console.log(error);
                 res.status(500).send(error);
             });
-    },//
+    },
     update(req, res) {
-        let event = {
+        let message = {
             _id: req.body._id,
-            title: req.body.title,
-            body: req.body.body,
-            pic_path: req.body.pic_path,
-            type: req.body.type,
+            body: req.body.body
         };
-        _eventService.update(event)
-            .then(event => res.status(200).send(event))
+        _messageService.update(message)
+            .then(message => res.status(200).send(message))
             .catch(error => {
                 console.log(error);
                 res.status(500).send(error);
