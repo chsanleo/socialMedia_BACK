@@ -18,6 +18,12 @@ const MessageSchema = mongoose.Schema({
         //[idUsers,idUsers,...]
         type: Array, required: false
     },
+    createdAt:{
+        type: Date, required: true
+    },
+    updatedAt:{
+        type: Date, required: false
+    },
     delete: {
         type: Boolean, required: true
     }
