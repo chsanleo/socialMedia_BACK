@@ -27,19 +27,19 @@ const MainController = {
                 res.status(500).send(error);
             });
     },
-    getAllCountries(req,res){
+    getAllCountries(req, res) {
         _countryService.getAll()
-        .then(countriesList => {res.status(200).send(countriesList);})
-        .catch(error => {
-            console.log(error);
-            res.status(500).send(error);
-        });
+            .then(countriesList => { res.status(200).send(countriesList); })
+            .catch(error => {
+                console.log(error);
+                res.status(500).send(error);
+            });
     },
-    forgotPass(req,res){
+    forgotPass(req, res) {
         _userService.recoveryPass(req.body.email)
-        .then()
-        .catch(error => {
-            console.log(error);
+            .then()
+            .catch(error => {
+                console.log(error);
                 res.status(500).send(error);
             });
     },
@@ -53,9 +53,9 @@ const MainController = {
         _contactService.create(contactUs)
             .then()
             .catch(error => {
-            console.log(error);
-            res.status(500).send(error);
-        });
+                console.log(error);
+                res.status(500).send(error);
+            });
     }
 };
 module.exports = MainController;
