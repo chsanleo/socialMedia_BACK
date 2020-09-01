@@ -6,10 +6,10 @@ const MessageSchema = mongoose.Schema({
         type: Array, required: true
     },
     parentEvent: {
-        type: Number, required: true
+        type: String, required: true
     },
     parentMessage: {
-        type: Number, required: false
+        type: String, required: false
     },
     body: {
         type: String, required: true
@@ -17,6 +17,12 @@ const MessageSchema = mongoose.Schema({
     likes: {
         //[idUsers,idUsers,...]
         type: Array, required: false
+    },
+    createdAt:{
+        type: Date, required: true
+    },
+    updatedAt:{
+        type: Date, required: false
     },
     delete: {
         type: Boolean, required: true

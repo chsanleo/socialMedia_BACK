@@ -5,15 +5,17 @@ const MessageController = {
     create(req, res) {
         let message = {
             owner: conversionToModel.userReturnToUser(req.body.owner),//req.user,
-            parentEvent: req.body.parentEventId,
-            parentMessage: req.body.parentMessageId,
+            parentEvent: req.body.parentEvent,
+            parentMessage: req.body.parentMessage,
             body: req.body.body,
-            type: req.type,
-            likes: null,
+            likes: new Array(),
+            createdAt: Date.now(),
+            updatedAt: Date.now(),
             delete: false
         };
-        _messageService.create(message)
-            .then(message => res.status(201).send(message))
+        
+       _messageService.create(message)
+            .then(message =>  res.status(201).send(message))
             .catch(error => {
                 console.log(error);
                 res.status(500).send(error);
@@ -35,17 +37,14 @@ const MessageController = {
                 console.log(error);
                 res.status(500).send(error);
             });
-    },//
+    },
     update(req, res) {
-        let event = {
+        let message = {
             _id: req.body._id,
-            title: req.body.title,
-            body: req.body.body,
-            pic_path: req.body.pic_path,
-            type: req.body.type,
+            body: req.body.body
         };
-        _eventService.update(event)
-            .then(event => res.status(200).send(event))
+        _messageService.update(message)
+            .then(message => res.status(200).send(message))
             .catch(error => {
                 console.log(error);
                 res.status(500).send(error);
