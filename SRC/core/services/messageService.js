@@ -29,40 +29,34 @@ const MessageService = {
     },
     async likeMessage(user, _id) {
         try {
-            if (utils.isNullOrEmpty(id) || user === null) { return null; }
+            if (utils.isNullOrEmpty(_id) || user === null) { return null; }
             let message = await _messageRepository.findById(_id);
 
-            if (message.userLikes === undefined || message.userLikes.length === 0) {
-                let arr = new Array();
-                arr.push(user);
-                message.userLikes = arr;
-            }
-            else {
-                message.userLikes = utils.pushUnic(message.userLikes, user);
-            }
-             await _messageRepository.update(message);
-             return await _messageRepository.get(_id);
+            if ( message.likes.length === 0) { message.likes.push(user); }
+            else { message.userLikes = utils.pushUnic(message.likes, user); }
+            
+            await _messageRepository.update(message);
         } catch (error) {
             console.log(error);
         }
     },
     async unLikeMessage(user, _id) {
         try {
-            if (utils.isNullOrEmpty(id) || user === null) { return null; }
+            if (utils.isNullOrEmpty(_id) || user === null) { return null; }
             let message = await _messageRepository.findById(_id);
             let posItem = -1;
             let found = false;
 
-            for (let userLike of event.userLikes) {
+            for (let userLike of message.likes) {
                 posItem++;
                 if (userLike.id === user.id) {
                     found = true;
                     break;
                 }
             }
+            if(found){ message.likes.splice(posItem, 1); }
 
             await _messageRepository.update(message);
-            return await _messageRepository.get(_id);
         } catch (error) {
             console.log(error);
         }
