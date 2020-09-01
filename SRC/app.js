@@ -24,6 +24,7 @@ const cors = require('./middleware/cors');
 
 app.use(cors);
 app.use(express.json());
+
 app.options("/*", (req, res)=> res.send());
 
 app.use('/main', mainRouter);
