@@ -34,19 +34,6 @@ const UserService = {
             console.log(error);
         }
     },
-    async searchByEmail(email) {
-        try {
-
-            let user = await _userRepository.searchByEmail(email);
-            if (user === null || user) {
-                throw Error('This email already exist. Did u forget ur password? ');
-            }
-        } catch (error) {
-            console.log(error);
-            throw Error(error);
-
-        }
-    },
     async recoveryPass(email) {
         try {
             if (Utils.isNullOrEmpty(email)) { return; }
