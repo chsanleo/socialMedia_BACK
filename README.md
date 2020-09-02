@@ -12,8 +12,15 @@ We wanted to go further and we installed different libraries, adding some extra 
 ## How to Start 🚀
 
 + If you only want to use our Api/Backend, just clone this repository 
+
 ```
  git clone https://github.com/chsanleo/socialMedia_BACK
+
+```
++ move to the source  folder,
+```
+
+$ socialMedia_BACK/src
 ```
 
 + and install the packages,
@@ -22,7 +29,13 @@ We wanted to go further and we installed different libraries, adding some extra 
 $ npm install
 ```
 
-+ run the migrations to create the database
++ creation the database
+
+```
+$ sequelize db:create
+```
+
++ run the migrations 
 
 ```
 $ sequelize db:migrate
@@ -33,7 +46,15 @@ $ sequelize db:migrate
 ```
 $ sequelize db:seed:all
 ```
- 
+
++ rename config/config_sample.json to config/config.json and add your own configuration.
+
++ rename config/mailConfig_sample.js to config/mailConfig.js and add your own configuration.
+
++ rename config/properties_sample.js to config/properties.js and add your own configuration.
+
++ rename config/winston_sample.js to config/winston.js and add your own configuration.
+
 + and... WORK! (in that step can be used as a API).
 
 ## Project status
