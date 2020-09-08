@@ -16,8 +16,8 @@ const Utils = {
     },
 
     pushUnic(items, item) {
-        if (items.lenght === 0) { return items.push(item); }
-        if (items.find(res => res === item)) { return items.push(item); }
+        if (items.find(res => res.id === item.id)) { return items; }
+        return items.push(item);
     }
 };
 module.exports = Utils;
