@@ -50,13 +50,14 @@ const EventService = {
         try {
             if (utils.isNullOrEmpty(_id) || user === null) { return null; }
             let event = await _eventRepository.findById(_id);
-            if (event.userJoin === undefined || event.userJoin.length === 0) {
+            
+            if (!event.userJoin || event.userJoin.length === 0) {
                 let arr = new Array();
                 arr.push(user);
                 event.userJoin = arr;
             }
             else {
-                event.userJoin = utils.pushUnic(event.userJoin, user);
+               utils.pushUnic(event.userJoin, user);
             }
 
             await _eventRepository.update(event);
@@ -72,7 +73,7 @@ const EventService = {
             
             if (event.userLikes.length === 0) { event.userLikes.push(user); }
             else { event.userLikes = utils.pushUnic(event.userLikes, user); }
-            
+
             await _eventRepository.update(event);
             return await _eventRepository.findById(_id);
         } catch (error) {
